@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 16:30:56 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/02 17:44:13 by amansir          ###   ########.fr       */
+/*   Updated: 2026/01/03 18:44:05 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,30 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (joined);
 }
 
-int	ft_isdigit(int c)
+int	is_digit(int c)
 {
 	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+int	is_plus(int c)
+{
+	if (c == '+')
+		return (1);
+	return (0);
+}
+
+int	is_minus(int c)
+{
+	if (c == '-')
+		return (1);
+	return (0);
+}
+
+int	is_space(int c)
+{
+	if (c == ' ')
 		return (1);
 	return (0);
 }
@@ -91,14 +112,14 @@ char	*parser(int ac, char **av)
 	return nums;
 }
 
-char	*checker(char *nums)
+char	*char_checker(char *nums)
 {
 	int i;
 
 	i = 0;
 	while (nums[i])
 	{
-		if (nums[i] <= '0' && nums[i] >= '9' && nums[i] != '+' && nums[i] != '-' && nums[i] != ' ')
+		if (!(is_digit(nums[i]) || is_plus(nums[i]) || is_minus(nums[i]) || is_space(nums[i])))
 		{
 			nums = "Error\n";
 			return (nums);
@@ -108,32 +129,73 @@ char	*checker(char *nums)
 	return (nums);
 }
 
+char	*sign_checker(char *nums)
+{
+	int i;
+
+	i = 0;
+	while (nums[i])
+	{
+		if ((is_plus(nums[i]) || is_minus(nums[i])) && !(is_digit(nums[i+1])))
+		{
+			nums = "Error\n";
+			return (nums);
+		}
+		i++;
+	}
+	return (nums);
+}
+
+// char	*twin_checker(char *num)
+
+int	ft_atoi(const char *nptr)
+{
+	long	n;
+	int		s;
+	int		i;
+
+	s = 1;
+	n = 0;
+	i = 0;
+	while (nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			s = -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		n = n * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return ((int)(n * s));
+}
+
 int main(int argc,char *argv[])
 {
 	/*
 		The program must work with several numerical arguments
 		./push_swap 1 3 5 +9 20 -4 50 60 04 08
+		
 		The program also works if you receive a single character list as a parameter
 		./push_swap "3 4 6 8 9 74 -56 +495"
-		The program should NOT work if it encounters another character
-		./push_swap 1 3 dog 35 80 -3
-		./push_swap a
-		./push_swap 1 2 3 5 67b778 947
-		.push_swap " 12 4 6 8 54fhd 4354"
-		./push_swap 1 --    45 32
-		these examples should return "Error\n"
+		
+		☑ ✓ The program should NOT work if it encounters another character
 		The program should NOT work if it encounters a double number
+		The program should work with INT MAX & INT MIN
+		
+		./push_swap "95 99 -9 10 9"
+		this example should work because -9 & 9 are not equal
+
 		./push_swap 1 3 58 9 3
 		./push_swap 3 03
 		./push_swap " 49 128     50 38   49"
-		these examples should return "Error\n"
-		./push_swap "95 99 -9 10 9"
-		this example should work because -9 & 9 are not equal
-		The program should work with INT MAX & INT MIN
+		these examples should work and sort your list
 		./push_swap 2147483647 2 4 7
 		./push_swap 99 -2147483648 23 545
 		./push_swap "2147483647 843 56544 24394"
-		these examples should work and sort your list
 		./push_swap 54867543867438 3
 		./push_swap -2147483647765 4 5
 		./push_swap "214748364748385 28 47 29"
@@ -141,7 +203,8 @@ int main(int argc,char *argv[])
 		Nothing has been specified when strings and int are mixed. It's up to you what you want to do
 	*/
 	char *nums = parser(argc, argv);
-	nums = checker(nums);
+	nums = char_checker(nums);
+	nums = sign_checker(nums);
 	printf("%s\n",nums);
 	
 }
