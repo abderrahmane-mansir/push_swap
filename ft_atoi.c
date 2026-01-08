@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/30 16:30:56 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/05 17:53:37 by amansir          ###   ########.fr       */
+/*   Created: 2026/01/05 16:55:07 by amansir           #+#    #+#             */
+/*   Updated: 2026/01/05 17:48:37 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
-#include <stdio.h>
 
-char	*parser(int ac, char **av)
+int	ft_atoi(const char *nptr)
 {
-	char	*nums;
+	long	n;
+	int		s;
+	int		i;
 
-	nums = joiner(ac, av);
-	nums = char_checker(nums);
-	nums = sign_checker(nums);
-	// nums = twin_checker(nums);
-	return (nums);
-}
-
-int main(int argc,char *argv[])
-{
-	char *nums = parser(argc, argv);
-	printf("%s\n",nums);	
+	s = 1;
+	n = 0;
+	i = 0;
+	while (nptr[i] == ' ')
+		i++;
+	if (nptr[i] == '-' || nptr[i] == '+')
+	{
+		if (nptr[i] == '-')
+			s = -1;
+		i++;
+	}
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		n = n * 10 + (nptr[i] - '0');
+		i++;
+	}
+	return ((int)(n * s));
 }
