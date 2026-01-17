@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:03:52 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/05 17:23:16 by amansir          ###   ########.fr       */
+/*   Updated: 2026/01/17 11:50:17 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ char	*joiner(int ac, char **av)
 	while (i < ac)
 	{
 		av[i] = ft_strjoin(" ", av[i]);
+		printf("Joined %d\n",i);
 		nums = ft_strjoin(nums, av[i]);
 		i++;
 	}

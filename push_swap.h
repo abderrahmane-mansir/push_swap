@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 10:39:29 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/05 17:11:51 by amansir          ###   ########.fr       */
+/*   Updated: 2026/01/17 11:56:50 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ char	*char_checker(char *nums);
 char	*sign_checker(char *nums);
 char	*twin_checker(char *nums);
 int		is_digit(int c);
-int		is_minus(int c);
 int		is_space(int c);
-int		is_plus(int c);
+int		is_sign(int c);
 int		is_twins(char *nums, int c, int p);
+void	error_message();
 // char	*twin_checker(char *num);
 
 #endif

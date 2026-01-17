@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:55:06 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/05 18:12:18 by amansir          ###   ########.fr       */
+/*   Updated: 2026/01/17 11:56:41 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ char	*char_checker(char *nums)
 	i = 0;
 	while (nums[i])
 	{
-		if (!(is_digit(nums[i]) || is_plus(nums[i]) || is_minus(nums[i]) || is_space(nums[i])))
+		if (!is_sign(nums[i]) && !is_space(nums[i]))
 		{
-			nums = "Error\n";
-			return (nums);
+			
+			return (error_message());
 		}
 		i++;
 	}
@@ -31,17 +31,23 @@ char	*char_checker(char *nums)
 
 char	*sign_checker(char *nums)
 {
-	int i;
+    int i = 0;
 
-	i = 0;
-	while (nums[i])
-	{
-		if ((is_plus(nums[i]) || is_minus(nums[i])) && !(is_digit(nums[i+1])))
-		{
-			nums = "Error\n";
-			return (nums);
-		}
-		i++;
-	}
-	return (nums);
+    while (nums[i])
+    {
+        if (is_sign(nums[i]))
+        {
+            if (!is_digit(nums[i + 1]))
+                return ("Error not digit\n");
+            if (i > 0 && !is_space(nums[i - 1]))
+                return ("Error not sign\n");
+        }
+        else if (!is_digit(nums[i]) && !is_space(nums[i]))
+        {
+			printf("%s",nums);
+            return ("Error not digit or space\n");
+        }
+        i++;
+    }
+    return (nums);
 }
