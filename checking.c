@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:55:06 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/17 11:56:41 by amansir          ###   ########.fr       */
+/*   Updated: 2026/01/21 18:09:54 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ char	*char_checker(char *nums)
 	while (nums[i])
 	{
 		if (!is_sign(nums[i]) && !is_space(nums[i]))
-		{
-			
-			return (error_message());
-		}
+			error_message();
 		i++;
 	}
 	return (nums);

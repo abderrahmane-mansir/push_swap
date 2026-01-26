@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 16:30:56 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/17 11:56:16 by amansir          ###   ########.fr       */
+/*   Updated: 2026/01/21 18:12:35 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 
 void	error_message()
 {
-	write(1,"Error",5);
+	write(2,"Error\n",6);
+	exit(1);
 }
 
 char	*parser(int ac, char **av)
 {
 	char	*nums;
 
+	if (av[1][0] == '\0')
+		error_message();
 	nums = joiner(ac, av);
 	printf("Joined : %s",nums);
 	nums = char_checker(nums);
@@ -33,7 +36,8 @@ char	*parser(int ac, char **av)
 
 int main(int argc,char *argv[])
 {
-	argc =  argc;
+	if (argc < 2)
+		return (0);
 	char *nums = parser(argc, argv);
 	printf("%s\n",nums);	
 }
