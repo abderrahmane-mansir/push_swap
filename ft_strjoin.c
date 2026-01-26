@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:03:52 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/21 18:20:06 by amansir          ###   ########.fr       */
+/*   Updated: 2026/01/26 12:34:16 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,30 +45,29 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*joined;
 	size_t	len1;
-		len1 = 0;
-	if (s2 != NULL)
-		len2 = ft_strlen(s2);
-	else
 	size_t	len2;
-
-	if (s1 != NULL)
-		len1 = ft_strlen(s1);
-	else
-		len1 = 0;
+	
+	len1 = 0;
+	len2 = 0;
 	if (s2 != NULL)
 		len2 = ft_strlen(s2);
 	else
 		len2 = 0;
+	if (s1 != NULL)
+		len1 = ft_strlen(s1);
+	else
+		len1 = 0;
 	joined = malloc(len1 + len2 + 1);
 	if (!joined)
 		return (NULL);
 	if (s1)
 		ft_memcpy(joined, s1, len1);
-	if (s2)rror
+	if (s2)
 		ft_memcpy(joined + len1, s2, len2);
 	joined[len1 + len2] = '\0';
 	return (joined);
 }
+
 char	*joiner(int ac, char **av)
 {
 	int		i;

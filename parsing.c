@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 16:30:56 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/21 18:12:35 by amansir          ###   ########.fr       */
+/*   Updated: 2026/01/26 13:01:47 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,35 @@ void	error_message()
 	write(2,"Error\n",6);
 	exit(1);
 }
-
+int is_empty(char *str)
+{
+	if(!str || !str[0])
+		error_message();
+	while (*str)
+	{
+		if(*str != ' ')
+			return 0;
+		str++;
+	}
+	return 1;
+}
 char	*parser(int ac, char **av)
 {
 	char	*nums;
+	int 	i;
 
+	i = 0;
 	if (av[1][0] == '\0')
 		error_message();
+	while(i < ac)
+	{
+		if(is_empty(av[i]))
+			error_message();
+		i++;
+	}
 	nums = joiner(ac, av);
-	printf("Joined : %s",nums);
 	nums = char_checker(nums);
-	printf("Char Checked : %s",nums);
 	nums = sign_checker(nums);
-	printf("Sign Checked : %s",nums);
 	return (nums);
 }
 
