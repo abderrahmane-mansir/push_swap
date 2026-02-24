@@ -13,7 +13,7 @@
 
 NAME = push_swap
 
-SRCS = ft_split.c ft_strjoin.c parsing.c basic_check.c checking.c 
+SRCS = ft_split.c ft_strjoin.c parsing.c basic_check.c checking.c parse_numbers.c
 
 OB = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 10:39:29 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/21 18:08:30 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/24 16:51:45 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 # include <unistd.h>
 # include <stdlib.h>
+#include <limits.h>
 # include <stdio.h>
 
 char	**ft_split(char const *s, char c);
@@ -23,6 +24,7 @@ char	*joiner(int ac, char **av);
 char	*char_checker(char *nums);
 char	*sign_checker(char *nums);
 char	*twin_checker(char *nums);
+int	    *parse_numbers(char *nums, int *out_count);
 int		is_digit(int c);
 int		is_space(int c);
 int		is_sign(int c);

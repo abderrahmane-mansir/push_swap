@@ -6,12 +6,11 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 16:30:56 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/26 13:01:47 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/24 17:09:50 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
-#include <stdio.h>
 
 void	error_message()
 {
@@ -50,10 +49,23 @@ char	*parser(int ac, char **av)
 	return (nums);
 }
 
-int main(int argc,char *argv[])
+int main(int argc, char *argv[])
 {
+	char	*nums;
+	int	*values;
+	int	count;
+
 	if (argc < 2)
 		return (0);
-	char *nums = parser(argc, argv);
-	printf("%s\n",nums);	
+	nums = parser(argc, argv);
+	values = parse_numbers(nums, &count);
+	printf("nums: %s\n", nums);
+	while(count > 0)
+	{
+		printf("values: %d\n", values[count - 1]);
+		count--;
+	}
+	free(values);
+	free(nums);
+	return (0);
 }
