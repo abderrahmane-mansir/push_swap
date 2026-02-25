@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:03:52 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/26 12:34:16 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/24 20:00:45 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*joined;
 	size_t	len1;
 	size_t	len2;
-	
+
 	len1 = 0;
 	len2 = 0;
-	if (s2 != NULL)
-		len2 = ft_strlen(s2);
-	else
-		len2 = 0;
-	if (s1 != NULL)
+	if (s1)
 		len1 = ft_strlen(s1);
-	else
-		len1 = 0;
+	if (s2)
+		len2 = ft_strlen(s2);
 	joined = malloc(len1 + len2 + 1);
 	if (!joined)
 		return (NULL);
@@ -72,13 +68,18 @@ char	*joiner(int ac, char **av)
 {
 	int		i;
 	char	*nums;
+	char 	*temp;
 
-	nums = "";
+	nums = " ";
 	i = 1;
 	while (i < ac)
 	{
 		av[i] = ft_strjoin(" ", av[i]);
-		nums = ft_strjoin(nums, av[i]);
+		temp = nums;
+		nums = ft_strjoin(temp, av[i]);
+		if (i > 1)
+			free(temp);
+		free(av[i]);
 		i++;
 	}
 	return (nums);

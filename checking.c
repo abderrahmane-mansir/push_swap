@@ -6,42 +6,43 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 13:55:06 by amansir           #+#    #+#             */
-/*   Updated: 2026/01/26 12:48:43 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/24 20:06:03 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*char_checker(char *nums)
+int	char_checker(char *nums)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (nums[i])
 	{
 		if (!is_sign(nums[i]) && !is_space(nums[i]) && !is_digit(nums[i]))
-			error_message();
+			return (0);
 		i++;
 	}
-	return (nums);
+	return (1);
 }
 
-char	*sign_checker(char *nums)
+int	sign_checker(char *nums)
 {
-	int i = 0;
+	int	i;
 
+	i = 0;
 	while (nums[i])
 	{
 		if (is_sign(nums[i]))
 		{
 			if (!is_digit(nums[i + 1]))
-				error_message();
+				return (0);
 			if (i > 0 && !is_space(nums[i - 1]))
-				error_message();
+				return (0);
 		}
 		else if (!is_digit(nums[i]) && !is_space(nums[i]))
-			error_message();
+			return (0);
 		i++;
 	}
-	return (nums);
+	return (1);
 }
