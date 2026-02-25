@@ -34,7 +34,10 @@ void	push(t_stack *stack, int value)
 	if (!new_node)
 		error_message();
 	new_node->value = value;
+	new_node->prev = NULL;
 	new_node->next = stack->top;
+	if (stack->top)
+		stack->top->prev = new_node;
 	stack->top = new_node;
 	stack->size++;
 }
