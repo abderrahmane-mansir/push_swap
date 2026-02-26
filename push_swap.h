@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 10:39:29 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/26 13:04:06 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/26 14:12:07 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char		*ft_strjoin(char *s1, char *s2);
 char		*parser(int ac, char **av);
 char		*joiner(int ac, char **av);
 int			char_checker(char *nums);
-int 		sign_checker(char *nums);
+int			sign_checker(char *nums);
 int			*parse_numbers(char *nums, int *out_count);
 int			count_words(char **words);
 void		free_words(char **words);

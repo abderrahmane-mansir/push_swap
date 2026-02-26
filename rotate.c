@@ -6,12 +6,11 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 07:21:27 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/26 10:30:04 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/26 14:20:22 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 static void	ft_rotate(t_stack *stack)
 {
@@ -34,18 +33,18 @@ static void	ft_rotate(t_stack *stack)
 void	ft_ra(t_stack *a)
 {
 	ft_rotate(a);
-	write(1,"ra\n", 3);
+	write(1, "ra\n", 3);
 }
 
 void	ft_rb(t_stack *b)
 {
 	ft_rotate(b);
-	write(1,"rb\n", 3);
+	write(1, "rb\n", 3);
 }
 
 void	ft_rr(t_stack *a, t_stack *b)
 {
 	ft_rotate(a);
 	ft_rotate(b);
-	write(1,"rr\n", 3);
+	write(1, "rr\n", 3);
 }

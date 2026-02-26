@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 12:00:00 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/25 01:55:13 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/26 14:11:09 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ void	free_words(char **words)
 	free(words);
 }
 
-static void signer(char *word, int *sign, int *j)
+static void	signer(char *word, int *sign, int *j)
 {
-    if (word[*j] == '+' || word[*j] == '-')
+	if (word[*j] == '+' || word[*j] == '-')
 	{
 		if (word[*j] == '-')
 			*sign = -1;
-        else
-            *sign = 1;
+		else
+			*sign = 1;
 		(*j)++;
 	}
 }
@@ -55,7 +55,7 @@ static int	is_valid_word(char *word)
 
 	j = 0;
 	n = 0;
-    signer(word, &sign, &j);
+	signer(word, &sign, &j);
 	if (word[j] == '\0')
 		return (0);
 	while (word[j])

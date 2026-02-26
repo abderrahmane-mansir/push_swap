@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/26 00:10:00 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/26 11:43:51 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/26 14:24:10 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,25 @@ int	ft_lstsize(t_stack *lst)
 	return (i);
 }
 
-void	radix_sort(t_stack *a, t_stack *b)
+static void	radix_sort_pass(t_stack *a, t_stack *b, int bit, int size)
 {
 	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (((a->top->index >> bit) & 1) == 0)
+			ft_pb(a, b);
+		else
+			ft_ra(a);
+		i++;
+	}
+	while (b->size)
+		ft_pa(a, b);
+}
+
+void	radix_sort(t_stack *a, t_stack *b)
+{
 	int	j;
 	int	max_bits;
 	int	max;
@@ -45,17 +61,7 @@ void	radix_sort(t_stack *a, t_stack *b)
 	j = 0;
 	while (j < max_bits)
 	{
-		i = 0;
-		while (i < size)
-		{
-			if (((a->top->index >> j) & 1) == 0)
-				ft_pb(a, b);
-			else
-				ft_ra(a);
-			i++;
-		}
-		while (b->size)
-			ft_pa(a, b);
+		radix_sort_pass(a, b, j, size);
 		j++;
 	}
 }

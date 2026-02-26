@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 18:00:00 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/26 01:37:17 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/26 14:20:50 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_stack	*create_stack(void)
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack)
-		return NULL;
+		return (NULL);
 	stack->top = NULL;
 	stack->size = 0;
 	return (stack);
@@ -32,7 +32,7 @@ int	push(t_stack *stack, int value)
 		error_message();
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
-		return 0;
+		return (0);
 	new_node->value = value;
 	new_node->prev = NULL;
 	new_node->next = stack->top;
@@ -40,7 +40,7 @@ int	push(t_stack *stack, int value)
 		stack->top->prev = new_node;
 	stack->top = new_node;
 	stack->size++;
-	return 1;
+	return (1);
 }
 
 void	free_stack(t_stack *stack)

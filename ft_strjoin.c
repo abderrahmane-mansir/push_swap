@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 12:03:52 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/24 20:00:45 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/26 14:08:08 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*joiner(int ac, char **av)
 {
 	int		i;
 	char	*nums;
-	char 	*temp;
+	char	*temp;
 
 	nums = " ";
 	i = 1;
