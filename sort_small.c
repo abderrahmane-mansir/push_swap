@@ -61,17 +61,40 @@ void	sort_3(t_stack *a)
 		ft_sa(a);
 }
 
+int	ft_get_node_pos(t_stack *stack, t_node *node)
+{
+	t_node	*tmp;
+	int		pos;
+
+	pos = 0;
+	tmp = stack->top;
+	while (tmp)
+	{
+		if (tmp == node)
+			return (pos);
+		pos++;
+		tmp = tmp->next;
+	}
+	return (pos);
+}
+
 void	sort_5(t_stack *a, t_stack *b)
 {
+	t_node	*min_node;
+	int		pos;
+
 	while (a->size > 3)
 	{
-		t_node	*min_node = ft_find_min_rank(a);
-		if (a->top == min_node)
-			ft_pb(a, b);
-		else if (a->top->next == min_node)
-			ft_sa(a);
-		else
-			ft_ra(a);
+		min_node = ft_find_min_rank(a);
+		pos = ft_get_node_pos(a, min_node);
+		while (a->top != min_node)
+		{
+			if (pos <= a->size / 2)
+				ft_ra(a);
+			else
+				ft_rra(a);
+		}
+		ft_pb(a, b);
 	}
 	sort_3(a);
 	while (b->size > 0)

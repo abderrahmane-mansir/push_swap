@@ -40,9 +40,9 @@ int	main(int argc, char *argv[])
 	nums = parser(argc, argv);
 	values = parse_numbers(nums, &count);
 	stacks = init_stacks(values, count);
+	set_stack_rank(stacks->a);
 	if (!is_sorted(stacks->a))
 	{
-		set_stack_rank(stacks->a);
 		if (stacks->a->size <= 5)
 			sort_5(stacks->a, stacks->b);
 		else
