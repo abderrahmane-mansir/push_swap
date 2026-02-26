@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 12:10:00 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/26 10:27:49 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/26 13:06:04 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	is_sorted(t_stack *stack)
 	tmp = stack->top;
 	while (tmp->next)
 	{
-		if (tmp->value > tmp->next->value)
+		if (tmp->index > tmp->next->index)
 			return (0);
 		tmp = tmp->next;
 	}
@@ -43,7 +43,10 @@ int	main(int argc, char *argv[])
 	if (!is_sorted(stacks->a))
 	{
 		set_stack_rank(stacks->a);
-		radix_sort(stacks->a, stacks->b);
+		if (stacks->a->size <= 5)
+			sort_5(stacks->a, stacks->b);
+		else
+			radix_sort(stacks->a, stacks->b);
 	}
 	free_stacks(stacks);
 	free(values);

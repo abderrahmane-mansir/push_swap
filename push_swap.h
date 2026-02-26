@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/31 10:39:29 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/26 10:26:57 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/26 13:04:06 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ t_stacks	*init_stacks(int *values, int count);
 void		free_stacks(t_stacks *stacks);
 void		radix_sort(t_stack *a, t_stack *b);
 int			ft_lstsize(t_stack *lst);
+void		sort_3(t_stack *a);
+void		sort_5(t_stack *a, t_stack *b);
 void		ft_sa(t_stack *a);
 void		ft_sb(t_stack *b);
 void		ft_ss(t_stack *a, t_stack *b);
