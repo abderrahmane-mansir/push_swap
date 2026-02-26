@@ -18,13 +18,13 @@ t_stack	*create_stack(void)
 
 	stack = (t_stack *)malloc(sizeof(t_stack));
 	if (!stack)
-		error_message();
+		return NULL;
 	stack->top = NULL;
 	stack->size = 0;
 	return (stack);
 }
 
-void	push(t_stack *stack, int value)
+int	push(t_stack *stack, int value)
 {
 	t_node	*new_node;
 
@@ -32,7 +32,7 @@ void	push(t_stack *stack, int value)
 		error_message();
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
-		error_message();
+		return 0;
 	new_node->value = value;
 	new_node->prev = NULL;
 	new_node->next = stack->top;
@@ -40,6 +40,7 @@ void	push(t_stack *stack, int value)
 		stack->top->prev = new_node;
 	stack->top = new_node;
 	stack->size++;
+	return 1;
 }
 
 void	free_stack(t_stack *stack)
@@ -71,15 +72,17 @@ t_stacks	*init_stacks(int *values, int count)
 	stacks->b = create_stack();
 	if (!stacks->a || !stacks->b)
 	{
-		free_stack(stacks->a);
-		free_stack(stacks->b);
-		free(stacks);
+		free_stacks(stacks);
 		error_message();
 	}
 	i = count - 1;
 	while (i >= 0)
 	{
-		push(stacks->a, values[i]);
+		if (!push(stacks->a, values[i]))
+		{
+			free_stacks(stacks);
+			error_message();
+		}
 		i--;
 	}
 	return (stacks);

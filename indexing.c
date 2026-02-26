@@ -12,17 +12,26 @@
 
 #include "push_swap.h"
 
-void	set_stack_indices(t_stack *stack)
+#include "push_swap.h"
+
+void	set_stack_rank(t_stack *stack)
 {
 	t_node	*cur;
-	int		idx;
+	t_node	*cmp;
+	int		rank;
 
 	cur = stack->top;
-	idx = 0;
 	while (cur)
 	{
-		cur->index = idx;
-		idx++;
+		rank = 0;
+		cmp = stack->top;
+		while (cmp)
+		{
+			if (cmp->value < cur->value)
+				rank++;
+			cmp = cmp->next;
+		}
+		cur->index = rank;
 		cur = cur->next;
 	}
 }

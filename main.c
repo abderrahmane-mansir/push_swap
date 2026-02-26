@@ -12,6 +12,22 @@
 
 #include "push_swap.h"
 
+int	is_sorted(t_stack *stack)
+{
+	t_node	*tmp;
+
+	if (!stack || !stack->top)
+		return (1);
+	tmp = stack->top;
+	while (tmp->next)
+	{
+		if (tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+	}
+	return (1);
+}
+
 int	main(int argc, char *argv[])
 {
 	char		*nums;
@@ -24,7 +40,11 @@ int	main(int argc, char *argv[])
 	nums = parser(argc, argv);
 	values = parse_numbers(nums, &count);
 	stacks = init_stacks(values, count);
-	radix_sort(stacks->a, stacks->b);
+	if (!is_sorted(stacks->a))
+	{
+		set_stack_rank(stacks->a);
+		radix_sort(stacks->a, stacks->b);
+	}
 	free_stacks(stacks);
 	free(values);
 	free(nums);

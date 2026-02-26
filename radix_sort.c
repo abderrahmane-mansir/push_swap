@@ -12,7 +12,6 @@
 
 #include "push_swap.h"
 
-
 int	ft_lstsize(t_stack *lst)
 {
 	t_node	*tmp;
@@ -34,31 +33,29 @@ void	radix_sort(t_stack *a, t_stack *b)
 {
 	int	i;
 	int	j;
-	int	size;
-	int	b_size;
 	int	max_bits;
+	int	max;
+	int	size;
 
-	size = ft_lstsize(a);
-	int max = size - 1;
+	size = a->size;
+	max = size - 1;
 	max_bits = 0;
 	while ((max >> max_bits) != 0)
-	max_bits++;
+		max_bits++;
 	j = 0;
 	while (j < max_bits)
 	{
-		size = ft_lstsize(a);
 		i = 0;
 		while (i < size)
 		{
-			if (((a->top->value >> j) & 1) == 0)
+			if (((a->top->index >> j) & 1) == 0)
 				ft_pb(a, b);
 			else
 				ft_ra(a);
 			i++;
 		}
-		b_size = ft_lstsize(b);
-		while (b_size--)
-			ft_pa(b, a);
+		while (b->size)
+			ft_pa(a, b);
 		j++;
 	}
 }

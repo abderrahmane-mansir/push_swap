@@ -35,7 +35,7 @@ typedef struct s_stacks
 	t_stack	*b;
 }	t_stacks;
 
-void		set_stack_indices(t_stack *stack);
+void		set_stack_rank(t_stack *stack);
 char		**ft_split(char const *s, char c);
 char		*ft_strjoin(char *s1, char *s2);
 char		*parser(int ac, char **av);
@@ -51,7 +51,7 @@ int			is_space(int c);
 int			is_sign(int c);
 void		error_message(void);
 t_stack		*create_stack(void);
-void		push(t_stack *stack, int value);
+int			push(t_stack *stack, int value);
 void		free_stack(t_stack *stack);
 void		push_node(t_stack *from, t_stack *to);
 void		rotate_node(t_stack *stack);
