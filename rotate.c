@@ -1,50 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 04:10:28 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/26 10:10:07 by amansir          ###   ########.fr       */
+/*   Created: 2026/02/26 07:21:27 by amansir           #+#    #+#             */
+/*   Updated: 2026/02/26 10:30:04 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	ft_swap(t_stack *stack)
+
+static void	ft_rotate(t_stack *stack)
 {
 	t_node	*first;
-	t_node	*second;
+	t_node	*last;
 
-	if (!stack || stack->size < 2)
+	if (!stack || !stack->top || stack->size < 2)
 		return ;
 	first = stack->top;
-	second = first->next;
-	first->next = second->next;
-	if (second->next)
-		second->next->prev = first;
-	second->next = first;
-	second->prev = NULL;
-	first->prev = second;
-	stack->top = second;
+	last = stack->top;
+	while (last->next)
+		last = last->next;
+	stack->top = first->next;
+	stack->top->prev = NULL;
+	last->next = first;
+	first->prev = last;
+	first->next = NULL;
 }
 
-void	ft_sa(t_stack *a)
+void	ft_ra(t_stack *a)
 {
-	ft_swap(a);
-	write(1,"sa\n",3);
+	ft_rotate(a);
+	write(1,"ra\n", 3);
 }
 
-void	ft_sb(t_stack *b)
+void	ft_rb(t_stack *b)
 {
-	ft_swap(b);
-	write(1,"sb\n",3);
+	ft_rotate(b);
+	write(1,"rb\n", 3);
 }
 
-void	ft_ss(t_stack *a, t_stack *b)
+void	ft_rr(t_stack *a, t_stack *b)
 {
-	ft_swap(a);
-	ft_swap(b);
-	write(1,"ss\n",3);
+	ft_rotate(a);
+	ft_rotate(b);
+	write(1,"rr\n", 3);
 }

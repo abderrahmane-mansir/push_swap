@@ -6,7 +6,7 @@
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 16:30:56 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/24 21:23:08 by amansir          ###   ########.fr       */
+/*   Updated: 2026/02/26 01:28:56 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,4 @@ char	*parser(int ac, char **av)
 		error_message();
 	}
 	return (nums);
-}
-
-int	main(int argc, char *argv[])
-{
-	char		*nums;
-	int			*values;
-	int			count;
-	t_stacks	*stacks;
-
-	if (argc < 2)
-		return (0);
-	nums = parser(argc, argv);
-	values = parse_numbers(nums, &count);
-	stacks = init_stacks(values, count);
-	free_stacks(stacks);
-	free(values);
-	free(nums);
-	return (0);
 }

@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   indexing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amansir <amansir@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 12:10:00 by amansir           #+#    #+#             */
-/*   Updated: 2026/02/26 10:27:49 by amansir          ###   ########.fr       */
+/*   Created: 2026/02/26 00:00:00 by amansir           #+#    #+#             */
+/*   Updated: 2026/02/26 00:12:22 by amansir          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char *argv[])
+void	set_stack_indices(t_stack *stack)
 {
-	char		*nums;
-	int			*values;
-	int			count;
-	t_stacks	*stacks;
+	t_node	*cur;
+	int		idx;
 
-	if (argc < 2)
-		return (0);
-	nums = parser(argc, argv);
-	values = parse_numbers(nums, &count);
-	stacks = init_stacks(values, count);
-	radix_sort(stacks->a, stacks->b);
-	free_stacks(stacks);
-	free(values);
-	free(nums);
-	return (0);
+	cur = stack->top;
+	idx = 0;
+	while (cur)
+	{
+		cur->index = idx;
+		idx++;
+		cur = cur->next;
+	}
 }
